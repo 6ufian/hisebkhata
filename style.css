@@ -1,0 +1,1413 @@
+/* style.css */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', 'Nirmala UI', 'Kalpurush', sans-serif;
+}
+/* header */
+header {
+  position: relative;
+  background: linear-gradient(to right, #28a745, #218838);
+  color: white;
+  padding: 25px;
+  text-align: center;
+  border-bottom: 3px solid #1c7430;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+header h2 {
+  font-size: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+header:active {
+  box-shadow: 0 0 15px rgba(0, 255, 120, 0.3);
+  transform: scale(0.98);
+}
+.app-info {
+  font-size: 14px;
+  margin-top: 5px;
+  opacity: 0.85;
+}
+body {
+  background: linear-gradient(135deg, #e3f2fd, #f8f9fa);
+  color: #333;
+  min-height: 100vh;
+  padding: 20px;
+  line-height: 1.6;
+  padding-bottom: 70px; /* বা যতটুকু তোমার .mobile-nav এর height */
+}
+
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+  background: white;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+.app-info {
+  font-size: 14px;
+  opacity: 0.9;
+  margin-top: 5px;
+}
+/* Cards */
+.card {
+  background: white;
+  border-radius: 12px;
+  padding: 25px;
+  margin: 20px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+h3 {
+  color: #28a745;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #e9ecef;
+  font-size: 22px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+/* Forms */
+.form-group {
+  margin-bottom: 20px;
+}
+label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: #495057;
+}
+input,
+select,
+textarea {
+  width: 100%;
+  padding: 14px;
+  border: 2px solid #ced4da;
+  border-radius: 8px;
+  font-size: 16px;
+  transition: all 0.3s;
+}
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: #28a745;
+  box-shadow: 0 0 0 3px rgba(40, 167, 69, 0.2);
+  outline: none;
+}
+/* Buttons */
+.btn {
+  background: #28a745;
+  color: white;
+  border: none;
+  padding: 14px 25px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+.btn:hover {
+  background: #218838;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(40, 167, 69, 0.3);
+}
+.btn-outline {
+  background: transparent;
+  border: 2px solid #28a745;
+  color: #28a745;
+}
+.btn-outline:hover {
+  background: #e6f7eb;
+}
+.btn-group {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 15px;
+  margin-top: 25px;
+  flex-direction: column;
+}
+.btn-plus {
+  background: #28a745;
+  color: white;
+  border: none;
+  padding: 16px 30px;
+  border-radius: 12px;
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: block;
+  margin: 30px auto;
+  /* Center horizontally */
+  width: 100%;
+  max-width: 260px;
+  box-shadow: 0 4px 12px rgba(40, 167, 69, 0.3);
+  text-align: center;
+}
+.btn-plus:hover {
+  background: #218838;
+  transform: translateY(-2px);
+}
+/* Filter section */
+.filter-section {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+/* Summary */
+.summary-card {
+  background: linear-gradient(to right, #e6f7eb, #d1f2e0);
+  padding: 20px;
+  border-radius: 12px;
+  display: flex;
+  justify-content: space-between;
+  margin: 25px 0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.summary-item {
+  text-align: center;
+  padding: 0 20px;
+}
+
+.summary-item:not(:last-child) {
+  border-right: 2px solid #c8e6c9;
+}
+
+.summary-title {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #495057;
+}
+
+.summary-value {
+  font-size: 22px;
+  font-weight: 700;
+  color: #28a745;
+}
+
+/* Entry list */
+.entry-list {
+  list-style: none;
+  margin-top: 25px;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.entry-item {
+  background: #ffffff;
+  border-left: 5px solid #28a745;
+  border-radius: 12px;
+  box-shadow: 0 5px 18px rgba(0, 0, 0, 0.05);
+  padding: 20px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.entry-item:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.entry-item.due {
+  border-left-color: #ff9800;
+}
+
+.entry-details {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex: 1;
+}
+
+.entry-name {
+  font-weight: bold;
+  font-size: 18px;
+  color: #212529;
+}
+
+.entry-meta {
+  display: flex;
+  gap: 12px;
+  font-size: 14px;
+  color: #6c757d;
+  flex-wrap: wrap;
+}
+
+.entry-note {
+  font-style: italic;
+  color: #888;
+}
+
+.entry-type {
+  padding: 2px 10px;
+  font-size: 12px;
+  border-radius: 20px;
+  font-weight: bold;
+  background-color: #e6f4ea;
+  color: #28a745;
+}
+
+.entry-item.due .entry-type {
+  background-color: #fff4e5;
+  color: #ff9800;
+}
+
+.entry-amount {
+  font-size: 24px;
+  font-weight: 800;
+  color: #28a745;
+  margin-left: 16px;
+}
+
+.entry-item.due .entry-amount {
+  color: #ff9800;
+}
+
+.entry-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.action-btn {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: none;
+  background-color: #f1f3f5;
+  color: #495057;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.action-btn:hover {
+  background-color: #28a745;
+  color: white;
+  transform: scale(1.1);
+}
+
+/* Types */
+.type-indicator {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  margin-left: 10px;
+}
+
+.cash-type {
+  background: #e6f7eb;
+  color: #28a745;
+}
+
+.due-type {
+  background: #fff3e0;
+  color: #ff9800;
+}
+/* Responsive */
+@media (max-width: 768px) {
+  .summary-card {
+    flex-direction: column;
+    gap: 25px;
+  }
+  
+  .summary-item:not(:last-child) {
+    border-right: none;
+    border-bottom: 2px solid #c8e6c9;
+    padding-bottom: 25px;
+  }
+  
+  .btn-group {
+    grid-template-columns: 1fr;
+  }
+  
+  .entry-item {
+    grid-template-columns: 1fr;
+  }
+  
+  .entry-actions {
+    justify-content: flex-end;
+  }
+}
+
+@media (max-width: 480px) {
+  .card {
+    padding: 20px 15px;
+    margin: 10px;
+  }
+  
+  header {
+    padding: 20px 15px;
+  }
+  
+  .filter-section {
+    grid-template-columns: 1fr;
+  }
+  
+  .entry-meta {
+    flex-direction: column;
+    gap: 5px;
+  }
+}
+
+/* dark mode */
+.dark {
+  color: #81c784;
+  background: #1e1e1e;
+  box-shadow: none;
+  
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+
+.dark .container {
+  background: #1e1e1e;
+  box-shadow: none;
+}
+
+.dark header {
+  background: linear-gradient(to right, #1b5e20, #2e7d32);
+  border-bottom: 3px solid #1c7430;
+}
+
+.dark h3 {
+  color: #81c784;
+  border-bottom-color: #444;
+}
+
+.dark input,
+.dark select,
+.dark textarea {
+  background: #2c2c2c;
+  color: #e0e0e0;
+  border: 2px solid #555;
+}
+
+.dark input:focus,
+.dark select:focus,
+.dark textarea:focus {
+  border-color: #81c784;
+  box-shadow: 0 0 0 3px rgba(129, 199, 132, 0.2);
+}
+
+.dark .btn {
+  background: #388e3c;
+  color: white;
+}
+
+.dark .btn:hover {
+  background: #2e7d32;
+  box-shadow: 0 4px 12px rgba(129, 199, 132, 0.3);
+}
+
+.dark .btn-outline {
+  border-color: #81c784;
+  color: #81c784;
+}
+
+.dark .btn-outline:hover {
+  background: #1b1b1b;
+}
+
+/* Entry list dark mode */
+body.dark .entry-item {
+  background: #2c2c2c;
+  color: #f0f0f0;
+  box-shadow: none;
+}
+
+body.dark .entry-name {
+  color: #ffffff;
+}
+
+body.dark .entry-meta {
+  color: #cccccc;
+}
+
+body.dark .entry-amount {
+  color: #81c784;
+}
+
+body.dark .entry-item.due .entry-amount {
+  color: #ffcc80;
+}
+
+body.dark .entry-note {
+  color: #b0b0b0;
+}
+
+body.dark .entry-type {
+  background-color: #1b5e20;
+  color: #ffffff;
+}
+
+body.dark .entry-item.due .entry-type {
+  background-color: #442200;
+  color: #ffb84d;
+}
+
+body.dark .action-btn {
+  background-color: #444;
+  color: #ddd;
+}
+
+body.dark .action-btn:hover {
+  background-color: #388e3c;
+  color: white;
+}
+#totalAmount {
+  background: linear-gradient(to right, #e6f4ea, #d1f7d6);
+  color: #1b5e20;
+  padding: 16px 24px;
+  border-radius: 12px;
+  font-size: 20px;
+  font-weight: 600;
+  text-align: center;
+  margin: 25px auto;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+}
+
+/* ডার্ক মোডের জন্য */
+body.dark #totalAmount {
+  background: linear-gradient(to right, #2c3e50, #34495e);
+  color: #ffffff;
+  box-shadow: none;
+}
+
+/* Total Summary Box */
+.total-summary {
+  display: flex;
+  justify-content: space-around;
+  gap: 15px;
+  padding: 20px;
+  margin: 25px 0;
+  border-radius: 12px;
+  background: linear-gradient(to right, #e6f4ea, #d1f7d6);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.summary-box {
+  flex: 1;
+  padding: 18px 12px;
+  border-radius: 10px;
+  background-color: white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  transition: transform 0.3s ease;
+  cursor: default;
+}
+
+.summary-box:hover {
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 0 8px 18px rgba(40, 167, 69, 0.2);
+}
+
+.summary-icon {
+  font-size: 28px;
+  margin-bottom: 6px;
+  animation: pop 0.8s ease-in-out;
+}
+
+@keyframes pop {
+  0% {
+    transform: scale(0.7);
+    opacity: 0;
+  }
+  
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.summary-label {
+  font-size: 15px;
+  font-weight: 600;
+  color: #2e7d32;
+}
+
+.summary-value {
+  font-size: 22px;
+  font-weight: bold;
+  color: #1b5e20;
+  margin-top: 4px;
+}
+
+/* Dark mode styles */
+body.dark .total-summary {
+  background: linear-gradient(to right, #2f3e46, #354f52);
+}
+
+body.dark .summary-box {
+  background-color: #1e1e1e;
+  box-shadow: none;
+}
+
+body.dark .summary-label,
+body.dark .summary-value,
+body.dark .summary-icon {
+  color: #ffffff;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .total-summary {
+    flex-direction: column;
+    gap: 12px;
+  }
+}
+
+
+
+.report-summary {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  background: #f1f3f5;
+  padding: 20px;
+  border-radius: 12px;
+  margin-top: 25px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+}
+
+.report-box {
+  flex: 1;
+  text-align: center;
+}
+
+.report-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #495057;
+}
+
+.report-value {
+  display: block;
+  margin-top: 8px;
+  font-size: 22px;
+  font-weight: 700;
+  color: #28a745;
+}
+
+body.dark .report-summary {
+  background-color: #1e1e1e;
+  color: white;
+}
+
+body.dark .report-value {
+  color: #90ee90;
+}
+
+/* Modal Styling */
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(30, 30, 30, 0.75);
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  /* ⬅️ modal উপরের দিকে যাবে */
+  padding-top: 40px;
+  /* ⬅️ উপরে একটু দূরত্ব থাকবে */
+  z-index: 999;
+  overflow-y: auto;
+}
+
+
+.modal.hidden {
+  display: none;
+}
+
+.modal-content {
+  background: white;
+  width: 95%;
+  max-width: 800px;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+  animation: fadeIn 0.3s ease-in-out;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+  top: 20px;
+}
+
+.modal-header h3 {
+  margin: 0;
+  font-size: 20px;
+  color: #28a745;
+}
+
+.close-btn {
+  background: transparent;
+  border: none;
+  font-size: 24px;
+  color: #888;
+  cursor: pointer;
+}
+
+.close-btn:hover {
+  color: #ff5252;
+}
+
+body.dark .modal-content {
+  background: #2c2c2c;
+  color: white;
+}
+
+body.dark .close-btn {
+  color: #ccc;
+}
+
+body.dark .close-btn:hover {
+  color: #ff6f61;
+}
+
+@keyframes fadeIn {
+  from {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+  
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* fixed-button */
+.fab-btn {
+  position: fixed;
+  bottom: 100px; /* ⬅️ উপরে উঠানোর জন্য 25px → 80px */
+  right: 25px;
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  background: #28a745;
+  color: white;
+  font-size: 24px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  border: none;
+  cursor: pointer;
+  z-index: 1000;
+  transition: background 0.3s ease;
+}
+
+.fab-btn:hover {
+  background: #218838;
+}
+
+/* Light mode scrollbar for modal */
+.modal-content::-webkit-scrollbar {
+  width: 10px;
+}
+
+.modal-content::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+.modal-content::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 10px;
+  transition: background 0.3s;
+}
+
+.modal-content::-webkit-scrollbar-thumb:hover {
+  background: #999;
+}
+
+/* Dark mode scrollbar for modal */
+body.dark .modal-content::-webkit-scrollbar-track {
+  background: #1e1e1e;
+}
+
+body.dark .modal-content::-webkit-scrollbar-thumb {
+  background: #555;
+}
+
+body.dark .modal-content::-webkit-scrollbar-thumb:hover {
+  background: #888;
+}
+
+/* ===== Scrollbar Styling for Modal ===== */
+.modal-content::-webkit-scrollbar {
+  width: 10px;
+}
+
+.modal-content::-webkit-scrollbar-thumb {
+  background: #28a745;
+  border-radius: 8px;
+}
+
+.modal-content::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 8px;
+}
+
+/* ডার্ক মোড স্ক্রলবার */
+body.dark .modal-content::-webkit-scrollbar-thumb {
+  background: #81c784;
+}
+
+body.dark .modal-content::-webkit-scrollbar-track {
+  background: #2c2c2c;
+}
+
+/* স্টক modal গুলোর জন্য */
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(30, 30, 30, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+  overflow-y: auto;
+}
+
+.modal.hidden {
+  display: none;
+}
+
+.modal-content {
+  background: white;
+  width: 95%;
+  max-width: 800px;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+  animation: fadeIn 0.3s ease-in-out;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  background: white;
+  padding-bottom: 10px;
+  z-index: 10;
+  border-bottom: 1px solid #ccc;
+}
+
+.modal-header h3 {
+  margin: 0;
+  font-size: 20px;
+  color: #28a745;
+}
+
+.close-btn {
+  background: transparent;
+  border: none;
+  font-size: 24px;
+  color: #888;
+  cursor: pointer;
+}
+
+.close-btn:hover {
+  color: #ff5252;
+}
+
+/* Form Styling */
+#stockForm input,
+#stockForm textarea {
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  border: 2px solid #ccc;
+  margin-bottom: 15px;
+  font-size: 16px;
+  transition: 0.3s;
+}
+
+#stockForm input:focus,
+#stockForm textarea:focus {
+  border-color: #28a745;
+  box-shadow: 0 0 0 3px rgba(40, 167, 69, 0.2);
+  outline: none;
+}
+
+/* Entry-like styling for stock list */
+#stockList .entry-item {
+  background: #fff;
+  border-left: 5px solid #28a745;
+  border-radius: 12px;
+  box-shadow: 0 5px 18px rgba(0, 0, 0, 0.05);
+  padding: 20px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: 0.3s;
+  flex-wrap: wrap;
+}
+
+#stockList .entry-item.out-of-stock {
+  border-left-color: #dc3545;
+}
+
+#stockList .entry-details {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+#stockList .entry-name {
+  font-weight: 700;
+  font-size: 18px;
+}
+
+#stockList .entry-meta {
+  font-size: 14px;
+  color: #666;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+#stockList .entry-amount {
+  font-size: 18px;
+  font-weight: bold;
+  color: #28a745;
+}
+
+#stockList .entry-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+#stockList .action-btn {
+  background: #f1f3f5;
+  border: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #495057;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+#stockList .action-btn:hover {
+  background: #28a745;
+  color: white;
+  transform: scale(1.1);
+}
+
+/* ✅ Dark Mode */
+
+body.dark .modal-content {
+  background: #2c2c2c;
+  color: #fff;
+}
+
+body.dark .modal-header {
+  background: #2c2c2c;
+  border-bottom: 1px solid #444;
+}
+
+body.dark .modal-header h3 {
+  color: #90ee90;
+}
+
+body.dark .close-btn {
+  color: #ccc;
+}
+
+body.dark .close-btn:hover {
+  color: #ff6f61;
+}
+
+body.dark #stockForm input,
+body.dark #stockForm textarea {
+  background: #1e1e1e;
+  color: #eee;
+  border: 2px solid #444;
+}
+
+body.dark #stockForm input:focus,
+body.dark #stockForm textarea:focus {
+  border-color: #81c784;
+  box-shadow: 0 0 0 3px rgba(129, 199, 132, 0.2);
+}
+
+body.dark #stockList .entry-item {
+  background: #2e2e2e;
+  color: #e0e0e0;
+  box-shadow: none;
+}
+
+body.dark #stockList .entry-meta {
+  color: #aaa;
+}
+
+body.dark #stockList .entry-amount {
+  color: #90ee90;
+}
+
+body.dark #stockList .action-btn {
+  background-color: #444;
+  color: #ddd;
+}
+
+body.dark #stockList .action-btn:hover {
+  background-color: #388e3c;
+  color: white;
+}
+
+/* .fab-btn {
+  position: fixed;
+  bottom: 20px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: #28a745;
+  color: white;
+  border: none;
+  font-size: 28px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  z-index: 1000;
+  transition: all 0.2s;
+}
+
+.fab-btn:hover {
+  background: #218838;
+  transform: scale(1.1);
+}
+ */
+/* Stock Add Button - Right Bottom */
+.stock-add-btn {
+  right: 20px;
+}
+
+/* Stock View Button - Above Add Button */
+.stock-view-btn {
+  right: 20px;
+  bottom: 90px;
+}
+
+/* Dark mode */
+body.dark .fab-btn {
+  background: #388e3c;
+}
+
+body.dark .fab-btn:hover {
+  background: #2e7d32;
+}
+
+.stock-pdf-btn {
+  background-color: #28a745;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  font-size: 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+.stock-pdf-btn:hover {
+  background-color: #218838;
+}
+
+.btn-stock {
+  background: #28a745;
+  color: white;
+  border: none;
+  padding: 16px 30px;
+  border-radius: 12px;
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: block;
+  margin: 30px auto;
+  /* Center horizontally */
+  width: 100%;
+  max-width: 260px;
+  box-shadow: 0 4px 12px rgba(40, 167, 69, 0.3);
+  text-align: center;
+}
+
+.btn-stock:hover {
+  background: #218838;
+  transform: translateY(-2px);
+}
+
+
+
+
+.stock-card {
+  background: #f9f9f9;
+  padding: 16px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  border-left: 5px solid #28a745;
+  transition: 0.2s ease;
+}
+
+.stock-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.stock-card h4 {
+  margin-bottom: 6px;
+  font-size: 18px;
+}
+
+.stock-card p {
+  margin: 2px 0;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.stock-card .stock-actions {
+  margin-top: 10px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+.stock-card .stock-actions button {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+/* ✅ Light & Dark mode compatible Card */
+.stock-card {
+  background: #fff;
+  border-left: 4px solid #28a745;
+  border-radius: 12px;
+  box-shadow: 0 5px 18px rgba(0, 0, 0, 0.05);
+  padding: 20px;
+  margin-bottom: 20px;
+  transition: 0.3s;
+}
+
+/* Dark mode card style */
+body.dark .stock-card {
+  background-color: #1e1e1e;
+  color: #f1f1f1;
+  border-left: 4px solid #2ecc71;
+  box-shadow: 0 5px 15px rgba(255, 255, 255, 0.05);
+}
+
+body.dark .stock-card p {
+  color: #ccc;
+}
+
+/* Profit & Loss colors */
+.stock-card .profit {
+  color: #2ecc71;
+}
+
+.stock-card .loss {
+  color: #e74c3c;
+}
+
+/* মোট রিপোর্ট সেকশন (Light Mode) */
+/* Light mode styling */
+#stockSummary.card {
+  margin-top: 30px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  color: #333;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+/* Dark mode styling */
+body.dark #stockSummary.card {
+  background-color: #1e1e1e;
+  color: #f1f1f1;
+  border-color: #444;
+  box-shadow: 0 0 5px rgba(255, 255, 255, 0.05);
+}
+
+body.dark #stockSummary.card h3 {
+  color: #ffffff;
+}
+
+/* 📊 মোট রিপোর্ট ডিজাইন */
+#stockSummary {
+  margin-top: 30px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  background-color: #f9f9f9;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+#stockSummary h3 {
+  font-size: 1.3rem;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+#stockSummary p {
+  font-size: 1rem;
+  margin: 6px 0;
+}
+
+#stockSummary strong {
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+/* 💹 লাভ/ক্ষতি কালার */
+.profit-positive {
+  color: #1ca01c; /* সবুজ */
+  font-weight: 700;
+}
+
+.profit-negative {
+  color: #e63946; /* লাল */
+  font-weight: 700;
+}
+
+/* 🌙 ডার্ক মোডে স্টাইল */
+body.dark #stockSummary {
+  background-color: #1e1e1e;
+  border-color: #444;
+  color: #ddd;
+}
+
+body.dark #stockSummary h3 {
+  color: #fff;
+}
+
+body.dark .profit-positive {
+  color: #90ee90; /* হালকা সবুজ */
+  font-weight: 800;
+}
+
+body.dark .profit-negative {
+  color: #ff7b7b; /* হালকা লাল */
+  font-weight: 800;
+}
+
+/* Light & Dark mode support for #stockName input */
+#stockName {
+  width: 100%;
+  max-width: 400px;
+  padding: 12px 15px;
+  font-size: 16px;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  color: #333;
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+  box-sizing: border-box;
+}
+
+/* Focus state */
+#stockName:focus {
+  outline: none;
+  border-color: #4caf50; /* সবুজ রং */
+  background-color: #e8f5e9;
+  color: #1b5e20;
+}
+
+/* Dark mode support using prefers-color-scheme */
+@media (prefers-color-scheme: dark) {
+  #stockName {
+    background-color: #222;
+    color: #eee;
+    border-color: #555;
+  }
+  #stockName:focus {
+    background-color: #003300;
+    border-color: #76ff03; /* হালকা সবুজ */
+    color: #aaffaa;
+  }
+}
+
+ /* স্টক আইটেম নাম পরিমাণ */
+.item-name {
+  color: #FFD700; /* Teal */
+  font-weight: bold;
+}
+
+.item-qty {
+  color: #ff8f00; /* Amber */
+  font-weight: bold;
+}
+
+@media (prefers-color-scheme: dark) {
+  .item-name {
+    color: #80cbc4; /* Teal (lighter) for dark mode */
+  }
+
+  .item-qty {
+    color: #ffd180; /* Amber (lighter) for dark mode */
+  }
+}
+/* 🌟 প্রিমিয়াম মোবাইল নেভিগেশন */
+.mobile-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: var(--nav-bg, #111);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 8px 0;
+  border-top: 1px solid #444;
+  z-index: 999;
+  box-shadow: 0 -2px 12px rgba(0, 0, 0, 0.5);
+}
+
+.mobile-nav button {
+  flex: 1;
+  background: none;
+  border: none;
+  color: var(--nav-color, #ccc);
+  font-size: 20px;
+  padding: 6px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.mobile-nav button span {
+  font-size: 12px;
+  margin-top: 2px;
+}
+
+.mobile-nav button:hover {
+  color: #00e676;
+  transform: scale(1.1);
+}
+
+.mobile-nav button.active {
+  color: #00e676;
+  font-weight: bold;
+}
+
+/* বড় স্ক্রিনে লুকিয়ে রাখা */
+@media (min-width: 768px) {
+  .mobile-nav {
+    display: none;
+  }
+}
+/* ✅ ক্যালকুলেটর ডিজাইন */
+.calculator {
+  max-width: 320px;
+  margin: 20px auto;
+  padding: 10px;
+  background: #111;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+}
+
+.calc-screen {
+  width: 100%;
+  font-size: 28px;
+  padding: 15px;
+  text-align: right;
+  border: none;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  background-color: #000;
+  color: #fff;
+}
+
+.calc-buttons {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+
+.calc-btn {
+  padding: 20px 0;
+  font-size: 20px;
+  border: none;
+  border-radius: 10px;
+  background-color: #222;
+  color: #fff;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.calc-btn:hover {
+  background-color: #333;
+}
+
+.calc-btn[data-value="C"],
+.calc-btn[data-value="⌫"],
+.calc-btn[data-value="%"],
+.calc-btn[data-value="/"],
+.calc-btn[data-value="*"],
+.calc-btn[data-value="-"],
+.calc-btn[data-value="+"] {
+  color: #ff6f00;
+}
+
+.calc-btn.equal {
+  grid-column: span 2;
+  background-color: #ff6f00;
+  color: #fff;
+  font-weight: bold;
+}
+
+.calc-btn.equal:hover {
+  background-color: #e65c00;
+}
+
+.page {
+  display: none;
+}
