@@ -5,23 +5,28 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>লোকাল হিসাব খাতা</title>
-  <!-- PWA & Theme -->
+
+  <!-- ✅ PWA ও থিম কালার -->
   <meta name="theme-color" content="#28a745" />
   <link rel="manifest" href="/hisebkhata009/manifest.json" />
-  <meta name="google-signin-client_id" content="1023277203967-1fbeirvf2q9jthl1ssc0b6h1bl98vp80.apps.googleusercontent.com">
-  <!-- Styles -->
+
+  <!-- ✅ স্টাইলশিট ও আইকন -->
   <link rel="stylesheet" href="style.css" />
   <link rel="icon" type="image/png" href="/hisebkhata009/icons/icon-192.png">
+  <link rel="icon" href="/hisebkhata /icon-512.png" title="logo" type="image/png" />
 </head>
 
 <body>
-  <!-- Header -->
+
+  <!-- ✅ হেডার -->
   <header>
-    <H2>🧾 লোকাল হিসাব খাতা</h2>
+    <h2>🧾 লোকাল হিসাব খাতা</h2>
     <button class="dark" onclick="toggleDarkMode()">🌙 ডার্ক মোড</button>
   </header>
+
   <main class="container">
-    <!-- Summary Section -->
+
+    <!-- ✅ 🏠 হোম সামারি সেকশন -->
     <section id="homePage" class="total-summary">
       <div class="summary-box">
         <div class="summary-icon">💰</div>
@@ -39,29 +44,29 @@
         <p class="summary-value" id="grandTotal">৳0.00</p>
       </div>
     </section>
-    
-    <!-- Search -->
+
+    <!-- ✅ 🔍 কাস্টমার সার্চ ইনপুট -->
     <section>
       <input type="text" id="searchInput" placeholder="🔍 কাস্টমারের নাম বা বিবরণ লিখুন" />
     </section>
-    
-    <!-- Entry Form -->
+
+    <!-- ✅ 🧾 হিসাব ফর্ম -->
     <form id="entryForm">
       <div class="form-group">
         <label for="name">কাস্টমারের নাম</label>
         <input type="text" id="name" required />
       </div>
-      
+
       <div class="form-group">
         <label for="amount">টাকার পরিমাণ</label>
         <input type="number" id="amount" required />
       </div>
-      
+
       <div class="form-group">
         <label for="note">বিবরণ (ঐচ্ছিক)</label>
         <input type="text" id="note" />
       </div>
-      
+
       <div class="form-group">
         <label for="type">লেনদেনের ধরন</label>
         <select id="type" required>
@@ -71,28 +76,29 @@
       </div>
       <button type="submit" class="btn-plus">➕ যোগ করুন</button>
     </form>
-    
-    <!-- Filters -->
+
+    <!-- ✅ 🔎 ফিল্টার ও কাস্টমার সিলেক্ট -->
     <section class="filter-section">
       <input type="date" id="filterDate" />
       <select id="filterCustomer" onchange="filterByCustomer()">
         <option value="">-- কাস্টমার ফিল্টার --</option>
       </select>
     </section>
-    
+
+    <!-- ✅ 🔘 রিপোর্ট ও ব্যাকআপ বাটন -->
     <div class="btn-group">
-      <button onclick="filterByDate()" class="btn">🔎 ফিল্টার</button>
-      <button onclick="generatePDF()" class="btn">📄 PDF</button>
-      <button onclick="exportBackup()" class="btn">🔁 ব্যাকআপ</button>
-      <button onclick="importBackup()" class="btn">📥 ইমপোর্ট</button>
-      <button onclick="generateMonthlyReport()" class="btn">📅 মাসিক রিপোর্ট</button>
-      <button onclick="generateMonthlyPDF()" class="btn">📄 মাসিক PDF</button>
+      <button onclick="filterByDate()" class="btn">🔎<br><small>ফিল্টার</small></button>
+      <button onclick="generatePDF()" class="btn">📄<br><small>PDF</small></button>
+      <button onclick="exportBackup()" class="btn">🔁<br><small>ব্যাকআপ</small></button>
+      <button onclick="importBackup()" class="btn">📥<br><small>ইমপোর্ট</small></button>
+      <button onclick="generateMonthlyReport()" class="btn">📅<br><small>মাসিক রিপোর্ট</small></button>
+      <button onclick="generateMonthlyPDF()" class="btn">📄<br><small>মাসিক PDF</small></button>
     </div>
-    
-    <!-- Hidden File Input for Import -->
+
+    <!-- ✅ 📁 ইমপোর্ট ফাইল ইনপুট (লুকানো) -->
     <input type="file" id="importFile" style="display: none;" accept=".json" onchange="handleFile(event)" />
-    
-    <!-- Weekly Report -->
+
+    <!-- ✅ 📅 সাপ্তাহিক রিপোর্ট -->
     <section class="report-summary">
       <div class="report-box">
         <span class="report-title">📅 আজকের নগদ</span>
@@ -103,45 +109,40 @@
         <span id="weeklyTotal" class="report-value">৳0.00</span>
       </div>
     </section>
-    
-    <!-- 📋 স্টক এন্ট্রি ফর্ম -->
+
+    <!-- ✅ 📦 স্টক ফর্ম -->
     <form id="stockForm" class="stock-form">
       <h2>➕ নতুন পণ্য যোগ করুন</h2>
-      <label>
-        🛒 পণ্যের নাম:
+      <label>🛒 পণ্যের নাম:
         <input type="text" id="stockName" required placeholder="যেমন: চাল, ডাল">
       </label>
-      <label>
-        🔢 পরিমাণ:
+      <label>🔢 পরিমাণ:
         <input type="number" id="qty" required placeholder="যেমন: ১০">
       </label>
-      <label>
-        💰 ক্রয়মূল্য:
-        <input type="number" id="buy" required placeholder="যেমন: ৫০">
+      <label>💰 ক্রয়মূল্য:
+        <input type="number" id="buy" step="0.01" min="0" required placeholder="যেমন: ৫০.৫০">
       </label>
-      <label>
-        💸 বিক্রয়মূল্য:
-        <input type="number" id="sell" required placeholder="যেমন: ৬৫">
+      <label>💸 বিক্রয়মূল্য:
+        <input type="number" id="sell" step="0.01" min="0" required placeholder="যেমন: ৬৫.৭৫">
       </label>
-      <label>
-        📅 তারিখ:
-        <input type="date" id="date" required>
-      </label>
+      📅 তারিখ:
+      <input type="date" id="date" required>
       <button type="submit" class="btn-stock">➕ যোগ করুন</button>
     </form>
-    
-    <!-- 📦 স্টক তালিকা টেবিল -->
+
+    <!-- ✅ 📋 স্টক লিস্ট -->
     <h2 style="margin-top: 40px;">📋 বর্তমান স্টক তালিকা</h2>
     <div id="stockList" class="stock-card-conteiner"></div>
-    
-    <!-- 📊 মোট রিপোর্ট -->
+
+    <!-- ✅ 📊 মোট রিপোর্ট -->
     <section id="stockSummary" class="card">
       <h3>📊 মোট রিপোর্ট</h3>
       <p>📦 মোট ক্রয়মূল্য: <strong id="totalBuy">৳0.00</strong></p>
       <p>💸 মোট বিক্রয়মূল্য: <strong id="totalSell">৳0.00</strong></p>
       <p>📈 মোট লাভ/ক্ষতি: <strong id="totalProfit">৳0.00</strong></p>
     </section>
-    <!-- 🧮 ক্যালকুলেটর পেজ -->
+
+    <!-- ✅ 🧮 ক্যালকুলেটর পেজ -->
     <section id="calculatorPage" class="page" style="display: none;">
       <h2 style="text-align:center; color:#ff6f00;">🧮 ক্যালকুলেটর</h2>
       <div class="calculator">
@@ -151,44 +152,42 @@
           <button class="calc-btn" data-value="⌫">⌫</button>
           <button class="calc-btn" data-value="%">%</button>
           <button class="calc-btn" data-value="/">÷</button>
-          
           <button class="calc-btn" data-value="7">7</button>
           <button class="calc-btn" data-value="8">8</button>
           <button class="calc-btn" data-value="9">9</button>
           <button class="calc-btn" data-value="*">×</button>
-          
           <button class="calc-btn" data-value="4">4</button>
           <button class="calc-btn" data-value="5">5</button>
           <button class="calc-btn" data-value="6">6</button>
           <button class="calc-btn" data-value="-">−</button>
-          
           <button class="calc-btn" data-value="1">1</button>
           <button class="calc-btn" data-value="2">2</button>
           <button class="calc-btn" data-value="3">3</button>
           <button class="calc-btn" data-value="+">+</button>
-          
           <button class="calc-btn" data-value="0">0</button>
           <button class="calc-btn" data-value=".">.</button>
           <button class="calc-btn equal" data-value="=">=</button>
         </div>
       </div>
     </section>
-    <!-- Entry List -->
+
+    <!-- ✅ 📋 হিসাব লিস্ট -->
     <ul id="entryList" class="entry-list"></ul>
-    
-    <!-- Install PWA Button -->
+
+    <!-- ✅ 📲 ইনস্টল বাটন -->
     <button id="installBtn" style="display: none;">📲 ইনস্টল করুন</button>
-    
-<!-- 📱 প্রিমিয়াম মোবাইল ন্যাভিগেশন -->
-<nav class="mobile-nav">
-  <button onclick="scrollToSection('homePage')">🏠<span>হোম</span></button>
-  <button onclick="scrollToSection('entryForm')">🧾<span>হিসাব</span></button>
-  <button onclick="scrollToSection('stockForm')">📦<span>স্টক</span></button>
-  <button onclick="scrollToSection('stockSummary')">📊<span>রিপোর্ট</span></button>
-  <button onclick="scrollToSection('calculatorPage')">🧮<span>ক্যালকো</span></button>
-</nav>
+
+    <!-- ✅ 📱 মোবাইল ন্যাভিগেশন -->
+    <nav class="mobile-nav">
+      <button onclick="scrollToSection('homePage')">🏠<span>হোম</span></button>
+      <button onclick="scrollToSection('entryForm')">🧾<span>হিসাব</span></button>
+      <button onclick="scrollToSection('stockForm')">📦<span>স্টক</span></button>
+      <button onclick="scrollToSection('stockSummary')">📊<span>রিপোর্ট</span></button>
+      <button onclick="scrollToSection('calculatorPage')">🧮<span>ক্যালকো</span></button>
+    </nav>
   </main>
-  <!-- Entry List Modal -->
+
+  <!-- ✅ 📋 এন্ট্রি লিস্ট মোডাল -->
   <div id="entryModal" class="modal hidden">
     <div class="modal-content">
       <div class="modal-header">
@@ -198,18 +197,14 @@
       <ul id="modalEntryList" class="entry-list"></ul>
     </div>
   </div>
-  <!-- বসাও body এর শেষে -->
+
+  <!-- ✅ 📋 ফ্লোটিং বাটন (FAB) -->
   <button onclick="toggleModal()" class="fab-btn">📋</button>
-  
-  <!-- JS Libraries -->
+
+  <!-- ✅ JS লাইব্রেরি ও স্ক্রিপ্ট -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.29/jspdf.plugin.autotable.min.js"></script>
   <script src="app.js"></script>
-  <!-- Calculator CSS -->
-  <link rel="stylesheet" href="calculator.css" />
-  
-  <!-- Calculator JS -->
-  <script src="calculator.js"></script>
-</body>
 
+</body>
 </html>
