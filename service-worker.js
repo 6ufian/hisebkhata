@@ -1,12 +1,12 @@
 const CACHE_NAME = "hishab-cache-v1";
 const urlsToCache = [
-  "/hisebkhata009/",
-  "/hisebkhata009/index.html",
-  "/hisebkhata009/style.css",
-  "/hisebkhata009/app.js",
-  "/hisebkhata009/manifest.json",
-  "/hisebkhata009/icons/icon-192.png",
-  "/hisebkhata009/icons/icon-512.png"
+  "hisebkhata",
+  "index.html",
+  "style.css",
+  "app.js",
+  "manifest.json",
+  "icon-192.png",
+  "icon-512.png"
 ];
 
 // Install event
@@ -36,7 +36,7 @@ self.addEventListener("fetch", event => {
   event.respondWith(
     caches.match(event.request).then(response => {
       return response || fetch(event.request).catch(() => {
-        return caches.match("/hisebkhata009/index.html");
+        return caches.match("index.html");
       });
     })
   );
