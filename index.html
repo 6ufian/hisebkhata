@@ -6,14 +6,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>লোকাল হিসাব খাতা</title>
 
-  <!-- ✅ PWA ও থিম কালার -->
-  <meta name="theme-color" content="#28a745" />
-  <link rel="manifest" href="manifest.json" />
+<!-- ✅ PWA এবং থিম -->
+<link rel="manifest" href="/hisebkhata009/manifest.json" />
+<meta name="theme-color" content="#28a745" />
+<link rel="icon" href="/hisebkhata009/icons/icon-192.png" />
 
   <!-- ✅ স্টাইলশিট ও আইকন -->
   <link rel="stylesheet" href="style.css" />
-  <link rel="icon" type="image/png" href="icon-192.png">
-  <link rel="icon" href="icon-512.png" title="logo" type="image/png" />
+  <link rel="icon" type="image/png" href="/hisebkhata009/icons/icon-192.png">
+  <link rel="icon" href="/hisebkhata /icon-512.png" title="logo" type="image/png" />
 </head>
 
 <body>
@@ -50,32 +51,40 @@
       <input type="text" id="searchInput" placeholder="🔍 কাস্টমারের নাম বা বিবরণ লিখুন" />
     </section>
 
+
     <!-- ✅ 🧾 হিসাব ফর্ম -->
-    <form id="entryForm">
-      <div class="form-group">
-        <label for="name">কাস্টমারের নাম</label>
-        <input type="text" id="name" required />
-      </div>
+<form id="entryForm">
+  <div class="form-group">
+    <label for="name">কাস্টমারের নাম</label>
+    <input type="text" id="name" list="customerSuggestions" required />
+    <datalist id="customerSuggestions"></datalist>
+  </div>
 
-      <div class="form-group">
-        <label for="amount">টাকার পরিমাণ</label>
-        <input type="number" id="amount" required />
-      </div>
+  <div class="form-group">
+    <label for="amount">টাকার পরিমাণ</label>
+    <input type="number" id="amount" required />
+  </div>
 
-      <div class="form-group">
-        <label for="note">বিবরণ (ঐচ্ছিক)</label>
-        <input type="text" id="note" />
-      </div>
+  <div class="form-group">
+    <label for="note">বিবরণ (ঐচ্ছিক)</label>
+    <input type="text" id="note" />
+  </div>
 
-      <div class="form-group">
-        <label for="type">লেনদেনের ধরন</label>
-        <select id="type" required>
-          <option value="cash">নগদ বিক্রয়</option>
-          <option value="due">বাকি বিক্রয়</option>
-        </select>
-      </div>
-      <button type="submit" class="btn-plus">➕ যোগ করুন</button>
-    </form>
+  <div class="form-group">
+    <label for="type">লেনদেনের ধরন</label>
+    <select id="type" required>
+      <option value="cash">নগদ বিক্রয়</option>
+      <option value="due">বাকি বিক্রয়</option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label for="entryDate">তারিখ (ঐচ্ছিক)</label>
+    <input type="date" id="entryDate" />
+  </div>
+
+  <button type="submit" class="btn-plus">➕ যোগ করুন</button>
+</form>
 
     <!-- ✅ 🔎 ফিল্টার ও কাস্টমার সিলেক্ট -->
     <section class="filter-section">
@@ -95,7 +104,6 @@
       <button onclick="generateMonthlyPDF()" class="btn">📄<br><small>মাসিক PDF</small></button>
       <button onclick="toggleStockLogModal()" class="btn">📜 স্টক ইতিহাস</button>
     </div>
-
     <!-- ✅ 📁 ইমপোর্ট ফাইল ইনপুট (লুকানো) -->
     <input type="file" id="importFile" style="display: none;" accept=".json" onchange="handleFile(event)" />
 
@@ -130,11 +138,6 @@
       <input type="date" id="date" required>
       <button type="submit" class="btn-stock">➕ যোগ করুন</button>
     </form>
-
-    <!-- ✅ 📋 স্টক লিস্ট -->
-    <h2 style="margin-top: 40px;">📋 বর্তমান স্টক তালিকা</h2>
-    <div id="stockList" class="stock-card-conteiner"></div>
-
     <!-- ✅ 📋 স্টক লিস্ট -->
     <h2 style="margin-top: 40px;">📋 বর্তমান স্টক তালিকা</h2>
     <div id="stockList" class="stock-card-conteiner"></div>
@@ -210,6 +213,38 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.29/jspdf.plugin.autotable.min.js"></script>
   <script src="app.js"></script>
+
+<!-- ✅ 📜 স্টক লগ Modal -->
+<div id="stockLogModal" class="modal hidden">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h3>📜 স্টক ইতিহাস</h3>
+      <button onclick="toggleStockLogModal()" class="close-btn">✖</button>
+    </div>
+    <div class="modal-body" id="stockLogList" style="max-height: 400px; overflow-y: auto;">
+      <p style="text-align:center; color:gray;">লোড হচ্ছে...</p>
+    </div>
+  </div>
+</div>
+<!-- ✅ 📜 স্টক লগ Modal with ফিল্টার -->
+<div id="stockLogModal" class="modal hidden">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h3>📜 স্টক ইতিহাস</h3>
+      <button onclick="toggleStockLogModal()" class="close-btn">✖</button>
+    </div>
+
+    <!-- 🔍 ফিল্টার ইনপুট -->
+    <div style="padding: 10px;">
+      <input type="text" id="logSearchInput" placeholder="🔍 পণ্যের নাম দিয়ে ফিল্টার করুন" style="width: 100%; padding: 8px; border-radius: 8px; border: 1px solid #ccc;">
+    </div>
+
+    <!-- 📃 লগ তালিকা -->
+    <div class="modal-body" id="stockLogList" style="max-height: 400px; overflow-y: auto;">
+      <p style="text-align:center; color:gray;">লোড হচ্ছে...</p>
+    </div>
+  </div>
+</div>
 
 </body>
 </html>
