@@ -93,6 +93,7 @@
       <button onclick="importBackup()" class="btn">📥<br><small>ইমপোর্ট</small></button>
       <button onclick="generateMonthlyReport()" class="btn">📅<br><small>মাসিক রিপোর্ট</small></button>
       <button onclick="generateMonthlyPDF()" class="btn">📄<br><small>মাসিক PDF</small></button>
+      <button onclick="toggleStockLogModal()" class="btn">📜 স্টক ইতিহাস</button>
     </div>
 
     <!-- ✅ 📁 ইমপোর্ট ফাইল ইনপুট (লুকানো) -->
@@ -129,6 +130,10 @@
       <input type="date" id="date" required>
       <button type="submit" class="btn-stock">➕ যোগ করুন</button>
     </form>
+
+    <!-- ✅ 📋 স্টক লিস্ট -->
+    <h2 style="margin-top: 40px;">📋 বর্তমান স্টক তালিকা</h2>
+    <div id="stockList" class="stock-card-conteiner"></div>
 
     <!-- ✅ 📋 স্টক লিস্ট -->
     <h2 style="margin-top: 40px;">📋 বর্তমান স্টক তালিকা</h2>
