@@ -78,8 +78,8 @@ const entryManager = {
     return entryManager.entries.filter(entry => {
       const matchesDate = !dateVal || entry.date === dateVal;
       const matchesCustomer = !customerVal || entry.name === customerVal;
-      const matchesSearch = !searchQuery || 
-        entry.name.toLowerCase().includes(searchQuery) || 
+      const matchesSearch = !searchQuery ||
+        entry.name.toLowerCase().includes(searchQuery) ||
         (entry.note && entry.note.toLowerCase().includes(searchQuery));
       
       return matchesDate && matchesCustomer && matchesSearch;
@@ -135,6 +135,11 @@ const stockManager = {
     }, { buy: 0, sell: 0, profit: 0 });
   }
 };
+
+
+
+
+
 
 // ======== Rendering Functions ========
 const renderer = {
@@ -235,34 +240,36 @@ const renderer = {
   }
 };
 
+
+
+
 // ======== Event Handlers ========
 const handlers = {
   handleFormSubmit: (e) => {
     e.preventDefault();
-    const { name, amount, note, type } = elements.form;
-    
-    if (!name.value || !amount.value || !type.value || !utils.validateNumber(amount.value)) {
+    const name = document.getElementById("name").value.trim();
+    const amount = document.getElementById("amount").value;
+    const note = document.getElementById("note").value;
+    const type = document.getElementById("type").value;
+    const entryDate = document.getElementById("entryDate").value;
+    const date = entryDate || utils.getTodayDate();
+
+    if (!name || !amount || !type || !utils.validateNumber(amount)) {
       return alert("সব ঘর সঠিকভাবে পূরণ করুন!");
     }
-    
-    entryManager.addEntry({
-      name: name.value,
-      amount: amount.value,
-      note: note.value,
-      date: utils.getTodayDate(),
-      type: type.value
-    });
-    
+
+    entryManager.addEntry({ name, amount, note, type, date });
     renderer.renderEntries();
-    elements.form.reset();
+    updateCustomerSuggestions();
+    document.getElementById("entryForm").reset();
   },
-  
+
   handleStockSubmit: (e) => {
     e.preventDefault();
     const { stockName, qty, buy, sell, date } = elements.stockForm;
     
     if (!stockName.value || !qty.value || !buy.value || !sell.value || !date.value ||
-        !utils.validateNumber(qty.value) || !utils.validateNumber(buy.value) || !utils.validateNumber(sell.value)) {
+      !utils.validateNumber(qty.value) || !utils.validateNumber(buy.value) || !utils.validateNumber(sell.value)) {
       return alert("সব ঘর সঠিকভাবে পূরণ করুন!");
     }
     
@@ -277,30 +284,35 @@ const handlers = {
     renderer.renderStock();
     elements.stockForm.reset();
   },
-  
+
   handleSearch: () => {
     renderer.renderEntries(entryManager.filterEntries());
   },
-  
+
   toggleDarkMode: () => {
     document.body.classList.toggle("dark");
     dataManager.setDarkMode(document.body.classList.contains("dark"));
   },
-  
+
   toggleModal: () => {
     const isOpen = !elements.entryModal.classList.contains("hidden");
     elements.entryModal.classList.toggle("hidden");
     document.body.style.overflow = isOpen ? "" : "hidden";
     
     if (!isOpen) {
-      elements.modalEntryList.innerHTML = entryManager.entries.length === 0 ? 
-        `<li style="text-align:center; color:gray;">কোনো এন্ট্রি নেই</li>` :
-        entryManager.entries.map((entry, index) => 
-          `<li class="entry-item ${entry.type}">${renderer.renderEntry(entry, index)}</li>`
-        ).join("");
+      elements.modalEntryList.innerHTML = entryManager.entries.length === 0
+        ? `<li style="text-align:center; color:gray;">কোনো এন্ট্রি নেই</li>`
+        : entryManager.entries.map((entry, index) =>
+            `<li class="entry-item ${entry.type}">${renderer.renderEntry(entry, index)}</li>`
+          ).join("");
     }
   }
 };
+
+
+
+
+
 // ======== PDF Generation ========
 const pdfGenerator = {
   generatePDF: () => {
@@ -311,7 +323,9 @@ const pdfGenerator = {
     doc.text("hisebkhata852@gmail.com", 14, 15);
     
     doc.autoTable({
-      head: [["#", "Name", "Amount", "Type", "Note", "Date"]],
+      head: [
+        ["#", "Name", "Amount", "Type", "Note", "Date"]
+      ],
       body: entryManager.entries.map((entry, i) => [
         i + 1,
         entry.name,
@@ -337,7 +351,9 @@ const pdfGenerator = {
     doc.text("Monthly Hishab Report", 14, 15);
     
     doc.autoTable({
-      head: [["Month", "Cash", "Due", "Total"]],
+      head: [
+        ["Month", "Cash", "Due", "Total"]
+      ],
       body: Object.keys(monthlyTotals).sort().map(month => {
         const cash = monthlyTotals[month].cash.toFixed(2);
         const due = monthlyTotals[month].due.toFixed(2);
@@ -365,7 +381,9 @@ const pdfGenerator = {
     doc.text("hisebkhata stockList", 14, 15);
     
     doc.autoTable({
-      head: [["#", "Product", "Qty", "Buy", "Sell", "Date", "Total Buy", "Total Sell", "Profit"]],
+      head: [
+        ["#", "Product", "Qty", "Buy", "Sell", "Date", "Total Buy", "Total Sell", "Profit"]
+      ],
       body: stockManager.items.map((item, i) => {
         const qty = parseFloat(item.qty);
         const buy = parseFloat(item.buy);
@@ -458,7 +476,7 @@ const pwaManager = {
         elements.installBtn.style.display = "none";
         pwaManager.deferredPrompt.prompt();
         pwaManager.deferredPrompt.userChoice.then(choice => {
-          console.log(choice.outcome === "accepted" ? 
+          console.log(choice.outcome === "accepted" ?
             "✅ ইনস্টলেশন শুরু হয়েছে" : "❌ ইউজার ইনস্টলেশন বাতিল করেছে");
           pwaManager.deferredPrompt = null;
         });
@@ -529,7 +547,7 @@ const navigation = {
       
       target.scrollIntoView({ behavior: "smooth" });
       
-      document.querySelectorAll(".mobile-nav button").forEach(btn => 
+      document.querySelectorAll(".mobile-nav button").forEach(btn =>
         btn.classList.remove("active"));
       const activeBtn = [...document.querySelectorAll(".mobile-nav button")]
         .find(btn => btn.getAttribute("onclick")?.includes(sectionId));
@@ -565,77 +583,6 @@ function initApp() {
   // Initialize PWA
   pwaManager.init();
 }
-
-// ======== Global Functions ========
-window.editEntry = (index) => {
-  const entry = entryManager.entries[index];
-  const { name, amount, note, type } = elements.form;
-  
-  name.value = entry.name;
-  amount.value = entry.amount;
-  note.value = entry.note || "";
-  type.value = entry.type;
-  
-  entryManager.deleteEntry(index);
-  name.focus();
-  alert("✏️ এন্ট্রি সম্পাদনার জন্য প্রস্তুত। পরিবর্তন করে আবার জমা দিন।");
-};
-
-window.deleteEntry = (index) => {
-  if (confirm("❌ আপনি কি এই এন্ট্রিটি মুছে ফেলতে চান?")) {
-    entryManager.deleteEntry(index);
-    renderer.renderEntries();
-    alert("🗑️ এন্ট্রি সফলভাবে মুছে ফেলা হয়েছে!");
-  }
-};
-
-window.editStock = (index) => {
-  const item = stockManager.items[index];
-  const { stockName, qty, buy, sell, date } = elements.stockForm;
-  
-  stockName.value = item.name;
-  qty.value = item.qty;
-  buy.value = item.buy;
-  sell.value = item.sell;
-  date.value = item.date;
-  
-  stockManager.deleteItem(index);
-  alert("✏️ সম্পাদনার জন্য তথ্য ফর্মে বসানো হয়েছে। পরিবর্তন করে আবার 'যোগ করুন' চাপুন।");
-};
-
-window.deleteStock = (index) => {
-  if (confirm("❌ আপনি কি নিশ্চিতভাবে এই পণ্যটি মুছে ফেলতে চান?")) {
-    stockManager.deleteItem(index);
-    renderer.renderStock();
-    alert("🗑️ পণ্যটি মুছে ফেলা হয়েছে!");
-  }
-};
-
-window.generatePDF = pdfGenerator.generatePDF;
-window.generateMonthlyPDF = pdfGenerator.generateMonthlyPDF;
-window.generateStockPDF = pdfGenerator.generateStockPDF;
-window.generateMonthlyReport = () => {
-  const monthlyTotals = entryManager.getMonthlyTotals();
-  let reportText = "📅 মাসিক রিপোর্ট:\n\n";
-  
-  Object.keys(monthlyTotals).sort().forEach(month => {
-    const data = monthlyTotals[month];
-    const total = data.cash + data.due;
-    reportText += `🗓️ ${month}: নগদ = ${utils.formatCurrency(data.cash)}, বাকি = ${utils.formatCurrency(data.due)}, মোট = ${utils.formatCurrency(total)}\n`;
-  });
-  
-  alert(reportText);
-};
-
-window.exportBackup = backupManager.exportBackup;
-window.importBackup = () => document.getElementById("importFile").click();
-window.toggleDarkMode = handlers.toggleDarkMode;
-window.toggleModal = handlers.toggleModal;
-window.scrollToSection = navigation.scrollToSection;
-window.scrollToTop = navigation.scrollToTop;
-
-// Start the app
-window.addEventListener("DOMContentLoaded", initApp);
 
 // ======== Global Functions ========
 window.editEntry = (index) => {
@@ -802,4 +749,5 @@ function updateCustomerSuggestions() {
 document.addEventListener("DOMContentLoaded", () => {
   updateCustomerSuggestions();
 });
+
 
