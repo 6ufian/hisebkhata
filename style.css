@@ -1411,3 +1411,48 @@ body.dark .profit-negative {
 .page {
   display: none;
 }
+
+.btn-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+  margin: 10px 0;
+}
+
+.btn {
+  background-color: #28a745;
+  color: white;
+  border: none;
+  padding: 10px;
+  min-width: 70px;
+  text-align: center;
+  border-radius: 10px;
+  font-size: 16px;
+  line-height: 1.2;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  transition: background 0.3s;
+}
+
+.btn:hover {
+  background-color: #218838;
+  cursor: pointer;
+}
+@media (max-width: 500px) {
+  .btn-group {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .btn {
+    flex: 1 1 30%;
+    font-size: 14px;
+    padding: 8px;
+  }
+}
+.log-item {
+  padding: 8px 10px;
+  border-bottom: 1px solid #eee;
+  font-size: 15px;
+}
