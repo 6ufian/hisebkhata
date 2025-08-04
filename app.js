@@ -203,6 +203,7 @@ const renderer = {
       <div class="entry-actions">
         <button class="action-btn" onclick="editStock(${index})">✏️</button>
         <button class="action-btn" onclick="deleteStock(${index})">🗑️</button>
+        <button class="action-btn" onclick="adjustStock(${index})">⚙️</button>
       </div>
     `;
   },
@@ -635,3 +636,170 @@ window.scrollToTop = navigation.scrollToTop;
 
 // Start the app
 window.addEventListener("DOMContentLoaded", initApp);
+
+// ======== Global Functions ========
+window.editEntry = (index) => {
+  const entry = entryManager.entries[index];
+  const { name, amount, note, type } = elements.form;
+  
+  name.value = entry.name;
+  amount.value = entry.amount;
+  note.value = entry.note || "";
+  type.value = entry.type;
+  
+  entryManager.deleteEntry(index);
+  name.focus();
+  alert("✏️ এন্ট্রি সম্পাদনার জন্য প্রস্তুত। পরিবর্তন করে আবার জমা দিন।");
+};
+
+window.deleteEntry = (index) => {
+  if (confirm("❌ আপনি কি এই এন্ট্রিটি মুছে ফেলতে চান?")) {
+    entryManager.deleteEntry(index);
+    renderer.renderEntries();
+    alert("🗑️ এন্ট্রি সফলভাবে মুছে ফেলা হয়েছে!");
+  }
+};
+
+window.editStock = (index) => {
+  const item = stockManager.items[index];
+  const { stockName, qty, buy, sell, date } = elements.stockForm;
+  
+  stockName.value = item.name;
+  qty.value = item.qty;
+  buy.value = item.buy;
+  sell.value = item.sell;
+  date.value = item.date;
+  
+  stockManager.deleteItem(index);
+  alert("✏️ সম্পাদনার জন্য তথ্য ফর্মে বসানো হয়েছে। পরিবর্তন করে আবার 'যোগ করুন' চাপুন।");
+};
+
+window.deleteStock = (index) => {
+  if (confirm("❌ আপনি কি নিশ্চিতভাবে এই পণ্যটি মুছে ফেলতে চান?")) {
+    stockManager.deleteItem(index);
+    renderer.renderStock();
+    alert("🗑️ পণ্যটি মুছে ফেলা হয়েছে!");
+  }
+};
+
+window.generatePDF = pdfGenerator.generatePDF;
+window.generateMonthlyPDF = pdfGenerator.generateMonthlyPDF;
+window.generateStockPDF = pdfGenerator.generateStockPDF;
+window.generateMonthlyReport = () => {
+  const monthlyTotals = entryManager.getMonthlyTotals();
+  let reportText = "📅 মাসিক রিপোর্ট:\n\n";
+  
+  Object.keys(monthlyTotals).sort().forEach(month => {
+    const data = monthlyTotals[month];
+    const total = data.cash + data.due;
+    reportText += `🗓️ ${month}: নগদ = ${utils.formatCurrency(data.cash)}, বাকি = ${utils.formatCurrency(data.due)}, মোট = ${utils.formatCurrency(total)}\n`;
+  });
+  
+  alert(reportText);
+};
+
+window.exportBackup = backupManager.exportBackup;
+window.importBackup = () => document.getElementById("importFile").click();
+window.toggleDarkMode = handlers.toggleDarkMode;
+window.toggleModal = handlers.toggleModal;
+window.scrollToSection = navigation.scrollToSection;
+window.scrollToTop = navigation.scrollToTop;
+
+// Start the app
+window.addEventListener("DOMContentLoaded", initApp);
+
+// ===== stock adjustment ====
+function adjustStock(index) {
+  const item = stockManager.items[index];
+  const input = prompt(`⚙️ ${item.name} এর পরিমাণ অ্যাডজাস্ট করুন (যেমন: +5 বা -3):`);
+
+  if (input) {
+    const adjustValue = parseInt(input);
+    if (!isNaN(adjustValue)) {
+      item.qty = Math.max(0, parseInt(item.qty) + adjustValue);
+
+      const stockLogs = JSON.parse(localStorage.getItem("stockLogs") || "[]");
+      stockLogs.push(`${item.name} এর qty ${adjustValue > 0 ? 'বাড়ানো হয়েছে' : 'কমানো হয়েছে'} (${adjustValue}) - ${new Date().toLocaleDateString()}`);
+      localStorage.setItem("stockLogs", JSON.stringify(stockLogs));
+
+      localStorage.setItem("stockItems", JSON.stringify(stockManager.items));
+      renderer.renderStock();
+    } else {
+      alert("❌ ইনপুট সঠিক নয়!");
+    }
+  }
+}
+
+//stock logs 
+function toggleStockLogModal() {
+  const modal = document.getElementById("stockLogModal");
+  const logContainer = document.getElementById("stockLogList");
+
+  if (modal.classList.contains("hidden")) {
+    // Show modal
+    const logs = JSON.parse(localStorage.getItem("stockLogs")) || [];
+    if (logs.length === 0) {
+      logContainer.innerHTML = `<p style="text-align:center; color:gray;">📭 কোনো স্টক লগ নেই</p>`;
+    } else {
+      logContainer.innerHTML = logs.reverse().map(log => `<div class="log-item">🕒 ${log}</div>`).join("");
+    }
+
+    modal.classList.remove("hidden");
+    document.body.style.overflow = "hidden";
+  } else {
+    // Hide modal
+    modal.classList.add("hidden");
+    document.body.style.overflow = "";
+  }
+}
+
+//----- filter
+
+function toggleStockLogModal() {
+  const modal = document.getElementById("stockLogModal");
+  const logContainer = document.getElementById("stockLogList");
+  const searchInput = document.getElementById("logSearchInput");
+
+  const logs = JSON.parse(localStorage.getItem("stockLogs")) || [];
+
+  // Modal দেখানো হলে
+  if (modal.classList.contains("hidden")) {
+    modal.classList.remove("hidden");
+    document.body.style.overflow = "hidden";
+
+    renderFilteredLogs(logs);
+
+    // ✅ ফিল্টার করার সময় live পরিবর্তন
+    searchInput.addEventListener("input", function () {
+      const keyword = this.value.toLowerCase();
+      const filtered = logs.filter;
+      renderFilteredLogs(filtered);
+    });
+
+  } else {
+    modal.classList.add("hidden");
+    document.body.style.overflow = "";
+  }
+}
+
+// ✅ আলাদা রেন্ডার ফাংশন
+function renderFilteredLogs(logs) {
+  const logContainer = document.getElementById("stockLogList");
+  if (logs.length === 0) {
+    logContainer.innerHTML = `<p style="text-align:center; color:gray;">📭 কোনো স্টক লগ নেই</p>`;
+  } else {
+    logContainer.innerHTML = logs.reverse().map(log => `<div class="log-item">🕒 ${log}</div>`).join("");
+  }
+}
+//== customer suggestion
+function updateCustomerSuggestions() {
+  const entries = JSON.parse(localStorage.getItem("entries")) || [];
+  const names = [...new Set(entries.map(e => e.name.trim()))];
+  const datalist = document.getElementById("customerSuggestions");
+
+  datalist.innerHTML = names.map(name => `<option value="${name}">`).join("");
+}
+document.addEventListener("DOMContentLoaded", () => {
+  updateCustomerSuggestions();
+});
+
